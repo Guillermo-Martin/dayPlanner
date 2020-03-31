@@ -23,11 +23,12 @@ for(var i = 0; i < allHours.length; i++){
         // Span
         var hourSpan = $('<span>');
         hourSpan.text(allHours[i]);
-        hourSpan.attr("hour", i);
+        // hourSpan.attr("hour", i);
         timeBlock.append(hourSpan);
 
         // Textarea
         var textArea = $('<textarea>');
+        textArea.attr("hour", i);
         timeBlock.append(textArea);
 
     
@@ -40,6 +41,10 @@ for(var i = 0; i < allHours.length; i++){
         timeBlock.append(saveButton);
 }
 
+// add event listener to save button
+$('.saveBtn').on('click', function(){
+        alert("connected!");
+})
 
 
 
