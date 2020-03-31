@@ -28,10 +28,10 @@ for(var i = 0; i < allHours.length; i++){
 
         // Textarea
         var textArea = $('<textarea>');
-        textArea.attr("hour", i);
+        textArea.attr("id", i);
         timeBlock.append(textArea);
+        // textArea.text("hello!");
 
-    
         // Save Button    
         // Create save button
         var saveButton = $('<button>');
@@ -39,12 +39,22 @@ for(var i = 0; i < allHours.length; i++){
         saveButton.addClass("saveBtn");
         // Append to timeblock
         timeBlock.append(saveButton);
+
 }
+
+
+
 
 // add event listener to save button
 $('.saveBtn').on('click', function(){
-        alert("connected!");
-})
+        // Target textarea
+        // .prev():  https://api.jquery.com/prev/
+        var eventText = $(this).prev('textarea').val();
+        console.log(eventText);
+});
+
+
+
 
 
 
