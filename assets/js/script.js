@@ -59,6 +59,7 @@ for(var i = 0; i < allHours.length; i++){
         // Textarea
         var textArea = $('<textarea>');
         textArea.attr("hour", allHours[i].hour);
+        textArea.attr("index", i);
         timeBlock.append(textArea);
         // textArea.text("hello!");
 
@@ -92,12 +93,12 @@ $('.saveBtn').on('click', function(){
         var eventText = $(this).prev('textarea').val();
         console.log(eventText);
 
-        // get hour of the textarea
-        var eventHour = $(this).prev('textarea').attr('hour');
-        console.log(eventHour);
+        // get index of the textarea 
+        var eventIndex = $(this).prev('textarea').attr('index');
+
 
         // take text and push into object associated with the hour
-        savedEvents[eventHour].event = eventText;
+        savedEvents[eventIndex].event = eventText;
         console.log(savedEvents);
 
         // save array to local storage
@@ -110,6 +111,9 @@ checkEvents();
 // Check for items in local storage
 function checkEvents(){
         var storedEvents = JSON.parse(localStorage.getItem("event"));
+        if(storedEvents === null){
+                return;
+        } else {
         // console.log(storedEvents);
         // console.log($('textarea'));
         // console.log($('textarea').eq(0));
@@ -118,4 +122,6 @@ function checkEvents(){
         for(var j = 0; j < storedEvents.length; j++){
                 $('textarea').eq(j).text(storedEvents[j].event);
         }
+        }
+        
 }
