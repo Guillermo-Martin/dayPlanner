@@ -22,7 +22,7 @@ var allHours = [
 ];  
         
 // check current hour
-        var currentHour = moment().hour();
+ var currentHour = moment().hour();
 
 
 var savedEvents = [
@@ -59,11 +59,17 @@ for(var i = 0; i < allHours.length; i++){
         // Textarea
         var textArea = $('<textarea>');
         textArea.attr("hour", allHours[i].hour);
-        textArea.addClass("past");
         timeBlock.append(textArea);
         // textArea.text("hello!");
 
-        //
+        // Compare hours
+        if(currentHour > hour){
+                textArea.addClass("past");
+        } else if(currentHour < hour){
+                textArea.addClass("future");
+        } else {
+                textArea.addClass("present");
+        }
 
         // Save Button    
         // Create save button
