@@ -48,13 +48,14 @@ for(var i = 0; i < allHours.length; i++){
         var label = allHours[i].label;
         var event = savedEvents[i].event;
 
-        // Create p tags and append to container div
-        var timeBlock = $('<p>');
+        // Create div tags and append to container div
+        var timeBlock = $('<div>');
         timeBlock.addClass("row hour");
         $container.append(timeBlock);
 
         // Span
         var hourSpan = $('<span>');
+        hourSpan.addClass("col-1");
         hourSpan.text(allHours[i].label);
         timeBlock.append(hourSpan);
 
@@ -62,6 +63,7 @@ for(var i = 0; i < allHours.length; i++){
         var textArea = $('<textarea>');
         textArea.attr("hour", allHours[i].hour);
         textArea.attr("index", i);
+        textArea.addClass("col-10");
         timeBlock.append(textArea);
         textArea.text(savedEvents[i].event);
 
@@ -78,7 +80,7 @@ for(var i = 0; i < allHours.length; i++){
         // Create save button
         var saveButton = $('<button>');
         saveButton.html('<i class="far fa-save"></i>');
-        saveButton.addClass("saveBtn");
+        saveButton.addClass("saveBtn col-1");
         // Append to timeblock
         timeBlock.append(saveButton);
 }
