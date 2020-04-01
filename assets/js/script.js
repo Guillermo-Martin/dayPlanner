@@ -8,20 +8,33 @@ var now = moment().format("dddd, MMMM Do");
 $currentDay.text(now);
 
 
-
 // Array for all hours
-var allHours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+var allHours = [
+        { hour: 9, label: "9AM"}, 
+        { hour: 10, label: "10AM"}, 
+        { hour: 11, label: "11AM"}, 
+        { hour: 12, label: "12PM"}, 
+        { hour: 13, label: "1PM"}, 
+        { hour: 14, label: "2PM"}, 
+        { hour: 15, label: "3PM"},
+        { hour: 16, label: "4PM"}, 
+        { hour: 17, label: "5PM"}
+];  
+        
+// check current hour
+        var currentHour = moment().hour();
+
 
 var savedEvents = [
-        { hour: "9AM", event: ""},
-        { hour: "10AM", event: ""},
-        { hour: "11AM", event: ""},
-        { hour: "12pm", event: ""},
-        { hour: "1pm", event: ""},
-        { hour: "2pm", event: ""},
-        { hour: "3pm", event: ""},
-        { hour: "4pm", event: ""},
-        { hour: "5pm", event: ""}
+        { hour: 9, event: ""},
+        { hour: 10, event: ""},
+        { hour: 11, event: ""},
+        { hour: 12, event: ""},
+        { hour: 13, event: ""},
+        { hour: 14, event: ""},
+        { hour: 15, event: ""},
+        { hour: 16, event: ""},
+        { hour: 17, event: ""}
 ];
 
 
@@ -42,6 +55,7 @@ for(var i = 0; i < allHours.length; i++){
         // Textarea
         var textArea = $('<textarea>');
         textArea.attr("hour", i);
+        textArea.addClass("past");
         timeBlock.append(textArea);
         // textArea.text("hello!");
 
@@ -52,6 +66,9 @@ for(var i = 0; i < allHours.length; i++){
         saveButton.addClass("saveBtn");
         // Append to timeblock
         timeBlock.append(saveButton);
+
+        
+        
 
 }
 
@@ -90,15 +107,3 @@ function checkEvents(){
                 $('textarea').eq(j).text(storedEvents[j].event);
         }
 }
-
-
-
-
-
-
-
-
-// Get all hours of day
-// var $container = $(".container");
-// var hours = moment().hour();  // this displays current time as a number 0-23
-// console.log(hours);
