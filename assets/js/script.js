@@ -58,7 +58,7 @@ for(var i = 0; i < allHours.length; i++){
 
         // Textarea
         var textArea = $('<textarea>');
-        textArea.attr("hour", i);
+        textArea.attr("hour", allHours[i].hour);
         textArea.addClass("past");
         timeBlock.append(textArea);
         // textArea.text("hello!");
