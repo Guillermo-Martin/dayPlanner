@@ -7,6 +7,8 @@ var $container = $(".container");
 var now = moment().format("dddd, MMMM Do");
 $currentDay.text(now);
 
+// check current hour
+var currentHour = moment().hour();
 
 // Array for all hours
 var allHours = [
@@ -21,22 +23,23 @@ var allHours = [
         { hour: 17, label: "5PM"}
 ];  
         
-// check current hour
- var currentHour = moment().hour();
 
+// Check if there's anything in local storage
+var savedEvents = JSON.parse(localStorage.getItem("event"));
 
-var savedEvents = [
-        { hour: 9, event: ""},
-        { hour: 10, event: ""},
-        { hour: 11, event: ""},
-        { hour: 12, event: ""},
-        { hour: 13, event: ""},
-        { hour: 14, event: ""},
-        { hour: 15, event: ""},
-        { hour: 16, event: ""},
-        { hour: 17, event: ""}
-];
-
+if(savedEvents === null){
+        savedEvents = [
+                { hour: 9, event: ""},
+                { hour: 10, event: ""},
+                { hour: 11, event: ""},
+                { hour: 12, event: ""},
+                { hour: 13, event: ""},
+                { hour: 14, event: ""},
+                { hour: 15, event: ""},
+                { hour: 16, event: ""},
+                { hour: 17, event: ""}
+        ];
+}
 
 
 for(var i = 0; i < allHours.length; i++){
@@ -53,7 +56,6 @@ for(var i = 0; i < allHours.length; i++){
         // Span
         var hourSpan = $('<span>');
         hourSpan.text(allHours[i].label);
-        // hourSpan.attr("hour", i);
         timeBlock.append(hourSpan);
 
         // Textarea
@@ -61,7 +63,7 @@ for(var i = 0; i < allHours.length; i++){
         textArea.attr("hour", allHours[i].hour);
         textArea.attr("index", i);
         timeBlock.append(textArea);
-        // textArea.text("hello!");
+        textArea.text(savedEvents[i].event);
 
         // Compare hours
         if(currentHour > hour){
@@ -79,10 +81,6 @@ for(var i = 0; i < allHours.length; i++){
         saveButton.addClass("saveBtn");
         // Append to timeblock
         timeBlock.append(saveButton);
-
-        
-        
-
 }
 
 
@@ -91,37 +89,13 @@ $('.saveBtn').on('click', function(){
         // Get text from textarea
         // .prev():  https://api.jquery.com/prev/
         var eventText = $(this).prev('textarea').val();
-        console.log(eventText);
 
         // get index of the textarea 
         var eventIndex = $(this).prev('textarea').attr('index');
 
-
         // take text and push into object associated with the hour
         savedEvents[eventIndex].event = eventText;
-        console.log(savedEvents);
 
         // save array to local storage
         localStorage.setItem("event", JSON.stringify(savedEvents));
-
 });
-
-checkEvents();
-
-// Check for items in local storage
-function checkEvents(){
-        var storedEvents = JSON.parse(localStorage.getItem("event"));
-        if(storedEvents === null){
-                return;
-        } else {
-        // console.log(storedEvents);
-        // console.log($('textarea'));
-        // console.log($('textarea').eq(0));
-        // console.log($('textarea').eq(0).text(storedEvents[0].event));
-        // .eq():  https://www.geeksforgeeks.org/jquery-eq-with-examples/
-        for(var j = 0; j < storedEvents.length; j++){
-                $('textarea').eq(j).text(storedEvents[j].event);
-        }
-        }
-        
-}
