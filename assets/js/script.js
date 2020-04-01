@@ -7,7 +7,7 @@ var $container = $(".container");
 var now = moment().format("dddd, MMMM Do");
 $currentDay.text(now);
 
-checkEvents();
+
 
 // Array for all hours
 var allHours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
@@ -23,13 +23,6 @@ var savedEvents = [
         { hour: "4pm", event: ""},
         { hour: "5pm", event: ""}
 ];
-
-
-// Check for items in local storage
-function checkEvents(){
-        var storedEvents = JSON.parse(localStorage.getItem("event"));
-        console.log(storedEvents[0].hour);
-}
 
 
 
@@ -63,8 +56,6 @@ for(var i = 0; i < allHours.length; i++){
 }
 
 
-
-
 // add event listener to save button
 $('.saveBtn').on('click', function(){
         // Get text from textarea
@@ -84,6 +75,21 @@ $('.saveBtn').on('click', function(){
         localStorage.setItem("event", JSON.stringify(savedEvents));
 
 });
+
+checkEvents();
+
+// Check for items in local storage
+function checkEvents(){
+        var storedEvents = JSON.parse(localStorage.getItem("event"));
+        // console.log(storedEvents);
+        // console.log($('textarea'));
+        // console.log($('textarea').eq(0));
+        // console.log($('textarea').eq(0).text(storedEvents[0].event));
+        // .eq():  https://www.geeksforgeeks.org/jquery-eq-with-examples/
+        for(var j = 0; j < storedEvents.length; j++){
+                $('textarea').eq(j).text(storedEvents[j].event);
+        }
+}
 
 
 
