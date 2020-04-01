@@ -77,7 +77,7 @@ for(var i = 0; i < allHours.length; i++){
         // Save Button    
         // Create save button
         var saveButton = $('<button>');
-        saveButton.text("Save");
+        saveButton.html('<i class="far fa-save"></i>');
         saveButton.addClass("saveBtn");
         // Append to timeblock
         timeBlock.append(saveButton);
