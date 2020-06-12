@@ -3,14 +3,7 @@
 https://guillermo-martin.github.io/homework5/  
 
 ## Description
-* What does the app do?
-    * The app allows a user to plan their workday by showing the user the current date and blocks of time.  The user can type their tasks in the textbox and save their tasks.
-* How does it work?
-    * The app uses moment.js to display the current date.
-    * Moment.js is also used to keep track of the current hour.
-    * Timeblocks that are past the current hour will be colored grey to indicate that particular time block is in the past.  The current timeblock will be colored red.  Future time blocks will be colored green.
-    * A user can type whatever they want in the textbox and when they press the save button, the text gets saved to local storage.
-    * If the user leaves the website and comes back, the information will still be available.  
+The app allows a user to plan their workday by showing the user the current date and blocks of time.  The user can type their tasks in the textbox and save their tasks. The app uses moment.js to display the current date. Moment.js is also used to keep track of the current hour. Timeblocks that are past the current hour will be colored grey to indicate that particular time block is in the past.  The current timeblock will be colored red.  Future time blocks will be colored green. A user can type whatever they want in the textbox and when they press the save button, the text gets saved to local storage. If the user leaves the website and comes back, the information will still be available.  
 
 ## Technologies
 * Languages, frameworks, various tools
